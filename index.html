@@ -564,7 +564,36 @@
         }
 
         /* Responsive Design */
+        
+        /* Large Tablets and Small Laptops */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .solutions-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        /* Tablets */
         @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem 3%;
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
@@ -575,44 +604,283 @@
                 flex-direction: column;
                 padding: 2rem;
                 text-align: center;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             }
 
             .nav-links.active {
                 display: flex;
             }
 
+            .nav-links a {
+                padding: 1rem 0;
+                font-size: 1.1rem;
+            }
+
             .mobile-menu {
                 display: flex;
             }
 
+            .logo {
+                height: 40px;
+            }
+
+            .brand-name {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding: 6rem 3% 3rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
+                line-height: 1.2;
             }
 
             .hero h2 {
                 font-size: 1.3rem;
             }
 
+            .hero p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 4rem 3%;
+            }
+
             .about-content,
             .hardware-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
             .solutions-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .solution-card {
+                padding: 2rem;
             }
 
             .section-title {
                 font-size: 2rem;
             }
 
+            .section-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
             .cta-buttons {
                 flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
             }
 
             .contact-container,
             .hardware-showcase {
                 padding: 2rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .business-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .hardware-content {
+                gap: 2rem;
+            }
+        }
+
+        /* Mobile Phones */
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 4%;
+            }
+
+            .logo {
+                height: 35px;
+            }
+
+            .brand-name {
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 5rem 4% 2rem;
+                min-height: 90vh;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                line-height: 1.3;
+                margin-bottom: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+
+            section {
+                padding: 3rem 4%;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+
+            .btn {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+
+            .solution-card {
+                padding: 1.5rem;
+            }
+
+            .solution-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .solution-card li {
+                font-size: 0.9rem;
+                padding: 0.6rem 0 0.6rem 1.5rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .tech-item {
+                padding: 1.5rem;
+            }
+
+            .tech-icon {
+                font-size: 2.5rem;
+            }
+
+            .tech-item h4 {
+                font-size: 1rem;
+            }
+
+            .hardware-showcase {
+                padding: 1.5rem;
+            }
+
+            .hardware-showcase h3 {
+                font-size: 1.5rem;
+            }
+
+            .hardware-showcase p {
+                font-size: 0.95rem;
+            }
+
+            .hardware-features li {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .business-card {
+                padding: 1.5rem;
+            }
+
+            .business-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .business-card p {
+                font-size: 0.9rem;
+            }
+
+            .contact-container {
+                padding: 1.5rem;
+            }
+
+            .contact-container h3 {
+                font-size: 1.5rem;
+            }
+
+            .contact-item {
+                font-size: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .contact-item span {
+                font-size: 1.5rem;
+            }
+
+            .founder-card {
+                padding: 1.5rem;
+            }
+
+            .founder-img {
+                max-width: 100%;
+            }
+
+            .about-text {
+                font-size: 1rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+
+            footer {
+                padding: 2rem 4%;
+            }
+
+            footer img {
+                height: 40px !important;
+            }
+        }
+
+        /* Extra Small Phones */
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .solution-card h3,
+            .business-card h3 {
+                font-size: 1.2rem;
             }
         }
 
