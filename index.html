@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrumBella - Connecting Everything. Securing Everywhere. Automating Anything.</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00d9ff;
+            --secondary-color: #0066ff;
+            --accent-color: #00ff88;
+            --dark-bg: #0a0e27;
+            --darker-bg: #050813;
+            --text-light: #ffffff;
+            --text-gray: #b0b5c9;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.5));
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
+        }
+
+        .founder-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            text-align: center;
+        }
+
+        .founder-img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Solutions Section */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .solution-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .solution-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .solution-card li {
+            padding: 0.7rem 0;
+            color: var(--text-gray);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .solution-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Technologies Section */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-item h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        /* Hardware Section */
+        .hardware-showcase {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 4rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            margin-top: 3rem;
+        }
+
+        .hardware-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hardware-features {
+            list-style: none;
+        }
+
+        .hardware-features li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            color: var(--text-light);
+        }
+
+        /* Business Model Section */
+        .business-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .business-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+        }
+
+        .business-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .business-card p {
+            color: var(--text-gray);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 4rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+        }
+
+        .contact-item span {
+            font-size: 2rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 14, 39, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+
+            .about-content,
+            .hardware-content {
+                grid-template-columns: 1fr;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .contact-container,
+            .hardware-showcase {
+                padding: 2rem;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="logo.jpg" alt="BrumBella Logo" class="logo">
+                <div class="brand-name">BrumBella</div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#hardware">Hardware</a></li>
+                <li><a href="#business">Business</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Connecting Everything. Securing Everywhere. Automating Anything.</h1>
+            <h2>Next-Generation IoT and AI-Driven Smart Solutions</h2>
+            <p>BrumBella revolutionizes how spaces think, react, and protect. We design smart systems that automate, monitor, and secure — without compromising your privacy.</p>
+            <div class="cta-buttons">
+                <a href="#solutions" class="btn btn-primary">Explore Our Solutions</a>
+                <a href="#contact" class="btn btn-secondary">Join the Future</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About BrumBella</h2>
+            <p class="section-subtitle fade-in">Building Intelligent Environments for Tomorrow</p>
+            
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>At BrumBella, we blend <strong>Artificial Intelligence, IoT, and Edge Computing</strong> to create intelligent ecosystems for homes, industries, and commercial spaces.</p>
+                    
+                    <p>Our core innovation — the <strong>Wall-Base Edge System (WBS)</strong> — enables privacy-focused surveillance and automation by storing 3D object coordinates instead of video footage. This ensures smart monitoring without visual intrusion.</p>
+                    
+                    <h3>Our Mission</h3>
+                    <p>To build intelligent environments that safeguard privacy, enhance productivity, and simplify life through autonomous automation.</p>
+                    
+                    <h3>Our Vision</h3>
+                    <p>A connected world where technology silently works in the background — protecting, optimizing, and empowering every human space.</p>
+                </div>
+                
+                <div class="founder-card fade-in">
+                    <img src="fouunder.jpg" alt="Founder" class="founder-img">
+                    <h3>Leadership & Vision</h3>
+                    <p style="color: var(--text-gray);">Pioneering the future of privacy-centric smart automation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Solutions</h2>
+            <p class="section-subtitle fade-in">Multi-Phase Development Roadmap</p>
+            
+            <div class="solutions-grid">
+                <div class="solution-card fade-in">
+                    <h3>🔒 Phase 1: Privacy-Centric Smart Security</h3>
+                    <ul>
+                        <li>AI-powered tracking using stereo cameras + RFID</li>
+                        <li>Detects and monitors objects in 3D space</li>
+                        <li>Humans represented as blank green outlines for privacy</li>
+                        <li>Local edge processing (no cloud dependence)</li>
+                        <li>Replaces traditional NVR/DVR systems</li>
+                        <li>Perfect for bedrooms, hotels, and sensitive areas</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card fade-in">
+                    <h3>🥽 Phase 2: AR-Enabled Interaction</h3>
+                    <ul>
+                        <li>AR Glasses for item tracking and maintenance</li>
+                        <li>Cooking and workflow guidance with real-time overlays</li>
+                        <li>AI-driven contextual assistance</li>
+                        <li>Real-time visualization of objects and inventory</li>
+                        <li>Advanced interaction with smart environments</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-card fade-in">
+                    <h3>🏪 Phase 3: Smart Retail & Warehouse Automation</h3>
+                    <ul>
+                        <li>Autonomous billing with AI + RFID integration</li>
+                        <li>Real-time stock management and analytics</li>
+                        <li>AR-based retail experience for product visualization</li>
+                        <li>Industry 4.0 integration for manufacturing</li>
+                        <li>Smart warehouse management and optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology">
+        <div class="container">
+            <h2 class="section-title fade-in">Core Technologies</h2>
+            <p class="section-subtitle fade-in">Cutting-Edge Tech Stack Powering Our Solutions</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">🧠</div>
+                    <h4>Edge AI & Computer Vision</h4>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">📡</div>
+                    <h4>RFID / QR Tracking</h4>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">🔧</div>
+                    <h4>Embedded Systems</h4>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">🐍</div>
+                    <h4>Python & TensorFlow</h4>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">👁️</div>
+                    <h4>OpenCV & Stereo Vision</h4>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">🏭</div>
+                    <h4>Industry 4.0 Integration</h4>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">⚡</div>
+                    <h4>ESP32 & IoT</h4>
+                </div>
+                <div class="tech-item fade-in">
+                    <div class="tech-icon">🖥️</div>
+                    <h4>Raspberry Pi & Jetson Nano</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware Section -->
+    <section id="hardware">
+        <div class="container">
+            <h2 class="section-title fade-in">The BrumBella WBS Cube</h2>
+            <p class="section-subtitle fade-in">Revolutionary Hardware Design for Edge Computing</p>
+            
+            <div class="hardware-showcase fade-in">
+                <div class="hardware-content">
+                    <div>
+                        <h3 style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1.5rem;">Sleek. Powerful. Private.</h3>
+                        <p style="color: var(--text-gray); margin-bottom: 2rem; font-size: 1.1rem;">
+                            A carbon-fiber smart cube that redefines edge computing and intelligent monitoring.
+                        </p>
+                        <ul class="hardware-features">
+                            <li><strong>Transparent Front Display</strong> with dynamic status LEDs</li>
+                            <li><strong>7-inch Monitoring Screen</strong> for real-time visualization</li>
+                            <li><strong>Multi-Sensor Integration</strong> (RFID, camera, temperature, motion)</li>
+                            <li><strong>Real-time AI Processing</strong> on-device for maximum privacy</li>
+                            <li><strong>Carbon-Fiber Construction</strong> for durability and aesthetics</li>
+                            <li><strong>Generative Design</strong> for optimal performance</li>
+                        </ul>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 300px; height: 300px; margin: 0 auto; background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(0, 255, 136, 0.2)); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 4rem; border: 2px solid var(--primary-color); box-shadow: 0 20px 60px rgba(0, 217, 255, 0.3);">
+                            🔲
+                        </div>
+                        <p style="margin-top: 2rem; color: var(--text-gray);">Next-Gen Edge Computer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section id="business">
+        <div class="container">
+            <h2 class="section-title fade-in">Business Model</h2>
+            <p class="section-subtitle fade-in">Flexible Solutions for Every Need</p>
+            
+            <div class="business-cards">
+                <div class="business-card fade-in">
+                    <h3>💼 SaaS + HaaS</h3>
+                    <p>Hybrid Software-as-a-Service and Hardware-as-a-Service model for maximum flexibility</p>
+                </div>
+                <div class="business-card fade-in">
+                    <h3>📊 Subscription Analytics</h3>
+                    <p>Affordable hardware deployment with optional subscription-based AI and IoT analytics</p>
+                </div>
+                <div class="business-card fade-in">
+                    <h3>🔒 Cloud-Free Processing</h3>
+                    <p>Local AI processing ensures speed, privacy, and data security</p>
+                </div>
+                <div class="business-card fade-in">
+                    <h3>🏠 Residential Solutions</h3>
+                    <p>Smart home automation with privacy-first monitoring</p>
+                </div>
+                <div class="business-card fade-in">
+                    <h3>🏭 Industrial Solutions</h3>
+                    <p>Industry 4.0 integration for manufacturing and warehousing</p>
+                </div>
+                <div class="business-card fade-in">
+                    <h3>🛒 Retail Solutions</h3>
+                    <p>Autonomous billing and customer experience enhancement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <p class="section-subtitle fade-in">Let's Build the Future Together</p>
+            
+            <div class="contact-container fade-in">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">Want to make your space truly intelligent?</h3>
+                <p style="color: var(--text-gray); font-size: 1.2rem;">Connect with us to discover how BrumBella can transform your environment.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:info@brumbella.com">info@brumbella.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Chennai, Tamil Nadu, India</span>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons" style="margin-top: 3rem;">
+                    <a href="mailto:info@brumbella.com" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="logo.jpg" alt="BrumBella Logo" style="height: 60px; margin-bottom: 1rem;">
+            <p>&copy; 2025 BrumBella. All rights reserved.</p>
+            <p style="margin-top: 1rem;">Connecting Everything. Securing Everywhere. Automating Anything.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 14, 39, 0.98)';
+            } else {
+                nav.style.background = 'rgba(10, 14, 39, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
+
