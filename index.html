@@ -284,46 +284,188 @@
         }
 
         /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .about-hero {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
+        .about-main-content {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
+        .about-main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--secondary-color));
         }
 
-        .about-text p {
+        .about-intro {
+            margin-bottom: 2.5rem;
+        }
+
+        .about-lead {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--text-light);
             margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .about-intro p {
+            font-size: 1.15rem;
+            line-height: 1.8;
             color: var(--text-gray);
         }
 
-        .founder-card {
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .innovation-highlight {
+            background: rgba(0, 217, 255, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .innovation-highlight:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .innovation-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .innovation-highlight h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .innovation-highlight p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .mv-card {
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 2.5rem;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 217, 255, 0.2);
             text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .founder-img {
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 350px;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
-            border: 3px solid var(--primary-color);
-            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .mv-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+        }
+
+        .mv-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .mv-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .mv-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-gray);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 136, 0.1));
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
         }
 
         /* Solutions Section */
@@ -650,10 +792,27 @@
                 padding: 4rem 3%;
             }
 
-            .about-content,
             .hardware-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            .about-main-content {
+                padding: 2rem;
+            }
+
+            .about-lead {
+                font-size: 1.3rem;
+            }
+
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 2rem;
             }
 
             .solutions-grid {
@@ -834,20 +993,44 @@
                 font-size: 1.5rem;
             }
 
-            .founder-card {
+            .about-main-content {
                 padding: 1.5rem;
             }
 
-            .founder-img {
-                max-width: 100%;
+            .about-lead {
+                font-size: 1.15rem;
             }
 
-            .about-text {
+            .about-intro p {
                 font-size: 1rem;
             }
 
-            .about-text h3 {
-                font-size: 1.5rem;
+            .innovation-highlight {
+                padding: 1.5rem;
+            }
+
+            .innovation-highlight h3 {
+                font-size: 1.4rem;
+            }
+
+            .mv-card {
+                padding: 2rem;
+            }
+
+            .mv-icon {
+                font-size: 3rem;
+            }
+
+            .mv-card h3 {
+                font-size: 1.4rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
             }
 
             footer {
@@ -941,19 +1124,55 @@
     <section id="about">
         <div class="container">
             <h2 class="section-title fade-in">About BrumBella</h2>
-            <p class="section-subtitle fade-in">Building Intelligent Environments for Tomorrow</p>
+            <p class="section-subtitle fade-in">Pioneering the Future of Intelligent Spaces</p>
             
-            <div class="about-content" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
-                <div class="about-text fade-in">
-                    <p>At BrumBella, we blend <strong>Artificial Intelligence, IoT, and Edge Computing</strong> to create intelligent ecosystems for homes, industries, and commercial spaces.</p>
+            <div class="about-hero fade-in">
+                <div class="about-main-content">
+                    <div class="about-intro">
+                        <p class="about-lead">At BrumBella, we're not just building smart systems — we're <span class="highlight">revolutionizing how spaces interact with people</span>.</p>
+                        <p>We seamlessly blend <strong>Artificial Intelligence</strong>, <strong>Internet of Things</strong>, and <strong>Edge Computing</strong> to create truly intelligent ecosystems that think, learn, and adapt to your needs.</p>
+                    </div>
                     
-                    <p>Our core innovation — the <strong>Wall-Base Edge System (WBS)</strong> — enables privacy-focused surveillance and automation by storing 3D object coordinates instead of video footage. This ensures smart monitoring without visual intrusion.</p>
+                    <div class="innovation-highlight">
+                        <div class="innovation-badge">🚀 Core Innovation</div>
+                        <h3>Wall-Base Edge System (WBS)</h3>
+                        <p>Our groundbreaking WBS technology redefines privacy-focused monitoring. Unlike traditional systems that record everything, we capture only 3D spatial coordinates — ensuring complete security without visual intrusion. Your privacy remains sacred while your space stays protected.</p>
+                    </div>
+                </div>
+                
+                <div class="mission-vision-grid">
+                    <div class="mv-card">
+                        <div class="mv-icon">🎯</div>
+                        <h3>Our Mission</h3>
+                        <p>To build intelligent environments that safeguard privacy, enhance productivity, and simplify life through autonomous automation — making technology work invisibly for you.</p>
+                    </div>
                     
-                    <h3>Our Mission</h3>
-                    <p>To build intelligent environments that safeguard privacy, enhance productivity, and simplify life through autonomous automation.</p>
+                    <div class="mv-card">
+                        <div class="mv-icon">🌟</div>
+                        <h3>Our Vision</h3>
+                        <p>A connected world where technology silently orchestrates in the background — protecting, optimizing, and empowering every human space without intrusion or complexity.</p>
+                    </div>
                     
-                    <h3>Our Vision</h3>
-                    <p>A connected world where technology silently works in the background — protecting, optimizing, and empowering every human space.</p>
+                    <div class="mv-card">
+                        <div class="mv-icon">💡</div>
+                        <h3>Our Promise</h3>
+                        <p>Privacy-first innovation that never compromises your security. Smart systems that enhance life without surveillance. Technology that serves humanity, not the other way around.</p>
+                    </div>
+                </div>
+                
+                <div class="stats-row fade-in">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Development Phases</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Privacy Focused</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Possibilities</div>
+                    </div>
                 </div>
             </div>
         </div>
