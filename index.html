@@ -13,63 +13,35 @@
         }
 
         :root {
-            /* Three-color theme from the website overview doc */
-            --brand-black: rgb(0, 0, 0);
-            --primary-color: rgb(22, 144, 59); /* darker green */
-            --accent-color: rgb(109, 236, 121); /* lighter green */
-            --dark-bg: #0a0e27;
-            --darker-bg: #050813;
-            --text-light: #ffffff;
-            --text-gray: #b0b5c9;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --primary-color: rgb(22, 144, 59);
+            --accent-color: rgb(109, 236, 121);
+            --bg: #ffffff;
+            --text-dark: #111111;
+            --text-gray: #444444;
+            --card-bg: #ffffff;
+            --border-soft: #e6e8ec;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-light);
+            background: var(--bg);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: var(--dark-bg);
-            overflow: hidden;
-        }
-
-        .animated-bg::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 20s linear infinite;
-        }
-
-        @keyframes moveGrid {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
         /* Navigation */
         nav {
-            position: relative;
+            position: sticky;
+            top: 0;
+            z-index: 30;
             width: 100%;
-            background: var(--dark-bg);
+            background: var(--bg);
             padding: 1rem 5%;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border-soft);
         }
 
         .nav-container {
@@ -93,7 +65,7 @@
         }
 
         .brand-name {
-            font-size: 72px;
+            font-size: 42px;
             font-weight: 900;
             font-family: 'Segoe UI Black', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1;
@@ -118,7 +90,7 @@
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
@@ -154,29 +126,63 @@
         .mobile-menu span {
             width: 25px;
             height: 3px;
-            background: var(--text-light);
+            background: var(--text-dark);
             border-radius: 2px;
             transition: all 0.3s;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: auto;
+        .animated-bg { display: none; }
+
+        /* Two column layout */
+        .page-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1.5fr;
+            gap: 2rem;
+            padding: 2rem 5%;
+            align-items: start;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .right-column {
+            position: relative;
+        }
+
+        .sticky-image {
+            position: sticky;
+            top: 90px;
+            height: calc(100vh - 140px);
             display: flex;
             align-items: center;
-            padding: 2rem 5% 4rem;
+            justify-content: center;
+        }
+
+        .sticky-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: var(--shadow-soft);
+            background: #f5f5f5;
+            padding: 12px;
+        }
+
+        .hero {
+            min-height: auto;
+            padding: 0;
             position: relative;
         }
 
         .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
             align-items: center;
-            z-index: 1;
         }
 
         .hero-text {
@@ -199,7 +205,7 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.3rem;
             font-weight: 700;
             margin-bottom: 0;
             line-height: 1.2;
@@ -212,67 +218,23 @@
         }
 
         .hero h2 {
-            font-size: 1.8rem;
+            font-size: 1rem;
             color: var(--text-gray);
-            margin-bottom: 0;
-            font-weight: 400;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
             animation: fadeInUp 1s ease 0.2s both;
             text-align: left;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-gray);
-            margin-bottom: 0;
+            margin-bottom: 0.5rem;
             animation: fadeInUp 1s ease 0.4s both;
             text-align: left;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.6s both;
-            margin-top: 1rem;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--text-light);
-            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-light);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
-        }
+        .cta-buttons { display: none; }
 
         @keyframes fadeInUp {
             from {
@@ -287,7 +249,7 @@
 
         /* Section Styles */
         section {
-            padding: 6rem 5%;
+            padding: 4rem 0;
             position: relative;
         }
 
@@ -332,10 +294,9 @@
 
         .about-card {
             background: var(--card-bg);
-            border-radius: 25px;
+            border-radius: 18px;
             padding: 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            border: 1px solid var(--border-soft);
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
@@ -352,8 +313,8 @@
         }
 
         .about-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-soft);
             border-color: var(--primary-color);
         }
 
@@ -378,8 +339,8 @@
         }
 
         .vision-card {
-            background: linear-gradient(135deg, rgba(22, 144, 59, 0.1), rgba(109, 236, 121, 0.1));
-            border: 2px solid rgba(22, 144, 59, 0.3);
+            background: linear-gradient(135deg, rgba(22, 144, 59, 0.08), rgba(109, 236, 121, 0.08));
+            border: 2px solid rgba(22, 144, 59, 0.25);
         }
 
         .vision-title {
@@ -472,7 +433,7 @@
         }
 
         .penetration-section {
-            background: rgba(109, 236, 121, 0.1);
+            background: #f8fdf8;
             border-left: 4px solid var(--accent-color);
             padding: 1.75rem;
             margin: 0 2.5rem 2.5rem;
@@ -499,10 +460,12 @@
         }
 
         .penetration-item {
-            background: rgba(0, 0, 0, 0.2);
+            background: #ffffff;
             padding: 1.25rem;
             border-radius: 10px;
             text-align: center;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
         }
 
         .penetration-item .label {
@@ -521,10 +484,11 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 255, 136, 0.1));
-            border-radius: 20px;
+            background: #ffffff;
+            border-radius: 16px;
             padding: 2.5rem;
-            border: 1px solid rgba(0, 217, 255, 0.3);
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
         }
 
         .stat-item {
@@ -559,10 +523,9 @@
 
         .product-card {
             background: var(--card-bg);
-            border-radius: 25px;
+            border-radius: 18px;
             padding: 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            border: 1px solid var(--border-soft);
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
@@ -583,8 +546,8 @@
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-soft);
             border-color: var(--primary-color);
         }
 
@@ -640,16 +603,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 217, 255, 0.05);
+            background: #f6f8fb;
         }
 
         .product-image img {
             max-width: 100%;
             height: auto;
-            max-height: 400px;
+            max-height: 420px;
             object-fit: contain;
             border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-soft);
         }
 
         .product-card:nth-child(even) {
@@ -677,8 +640,7 @@
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            border: 1px solid var(--border-soft);
             transition: all 0.3s;
         }
 
@@ -701,11 +663,11 @@
         /* Hardware Section */
         .hardware-showcase {
             background: var(--card-bg);
-            border-radius: 30px;
-            padding: 4rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 1px solid var(--border-soft);
             margin-top: 3rem;
+            box-shadow: var(--shadow-soft);
         }
 
         .hardware-content {
@@ -722,10 +684,10 @@
         .hardware-features li {
             padding: 1rem;
             margin-bottom: 1rem;
-            background: rgba(0, 217, 255, 0.1);
+            background: #f8fdf8;
             border-radius: 10px;
             border-left: 4px solid var(--accent-color);
-            color: var(--text-light);
+            color: var(--text-dark);
         }
 
         /* Services Section */
@@ -738,13 +700,13 @@
 
         .service-card {
             background: var(--card-bg);
-            border-radius: 25px;
+            border-radius: 18px;
             padding: 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            border: 1px solid var(--border-soft);
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-soft);
         }
 
         .service-card::before {
@@ -785,7 +747,7 @@
         }
 
         .service-conversions {
-            background: rgba(0, 217, 255, 0.05);
+            background: #f8fdf8;
             border-left: 4px solid var(--primary-color);
             padding: 1.75rem;
             margin: 0 2.5rem 1.5rem;
@@ -829,7 +791,7 @@
         }
 
         .service-feature-item {
-            background: rgba(22, 144, 59, 0.1);
+            background: #f8fdf8;
             padding: 1.25rem;
             border-radius: 12px;
             border: 1px solid rgba(22, 144, 59, 0.2);
@@ -872,14 +834,14 @@
 
         .team-card {
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            border: 1px solid var(--border-soft);
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
             text-align: center;
+            box-shadow: var(--shadow-soft);
         }
 
         .team-card::before {
@@ -899,8 +861,8 @@
         }
 
         .team-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-soft);
             border-color: var(--primary-color);
         }
 
@@ -980,17 +942,17 @@
 
         /* Footer */
         footer {
-            background: var(--dark-bg);
-            padding: 4rem 5% 2rem;
-            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            background: #ffffff;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border-soft);
         }
 
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
             margin-bottom: 2rem;
         }
 
@@ -1030,12 +992,12 @@
             margin: 0 auto;
             padding-top: 2rem;
             padding-bottom: 0;
-            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            border-top: 1px solid var(--border-soft);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .footer-copyright {
@@ -1045,7 +1007,7 @@
 
         .footer-social {
             display: flex;
-            gap: 1.5rem;
+            gap: 0.75rem;
             align-items: center;
         }
 
@@ -1058,23 +1020,19 @@
 
         .social-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 0.75rem;
         }
 
         .social-links a {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(0, 217, 255, 0.1);
-            border: 1px solid rgba(0, 217, 255, 0.2);
+            background: #f2f4f7;
+            border: 1px solid var(--border-soft);
+            transition: all 0.3s;
         }
 
         .social-links a:hover {
@@ -1088,13 +1046,18 @@
         
         /* Large Tablets and Small Laptops */
         @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3rem;
+            .page-grid {
+                grid-template-columns: 1fr;
             }
 
-            .hero h2 {
-                font-size: 1.5rem;
+            .sticky-image {
+                position: relative;
+                top: 0;
+                height: auto;
             }
+
+            .hero h1 { font-size: 2.3rem; }
+            .hero h2 { font-size: 1.1rem; }
 
             .section-title {
                 font-size: 2.5rem;
@@ -1135,7 +1098,7 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: var(--dark-bg);
+                background: var(--bg);
                 flex-direction: column;
                 padding: 2rem;
                 text-align: center;
@@ -1586,7 +1549,7 @@
                 <li><a href="#products">Products</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="mobile-menu" id="mobileMenu">
                 <span></span>
@@ -1596,59 +1559,54 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Every Thing online. Every Thing safe. Every Thing Automated.</h1>
-                <h2>Wall-Integrated Edge Computing Platform</h2>
-                <p>Designed for Industrial IoT and IoT applications enabling indoor and outdoor security, asset tracking, traceability, and automated control.</p>
-                <div class="cta-buttons">
-                    <a href="#products" class="btn btn-primary">Explore Our Solutions</a>
-                    <a href="#team" class="btn btn-secondary">Meet the Team</a>
+    <div class="page-grid">
+        <div class="left-column">
+            <!-- Hero Section -->
+            <section class="hero" id="home">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Every Thing online. Every Thing safe. Every Thing Automated.</h1>
+                        <h2>Wall-Integrated Edge Computing Platform</h2>
+                        <p>Designed for Industrial IoT and IoT applications enabling indoor and outdoor security, asset tracking, traceability, and automated control.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="website background.png" alt="BrumBella IoT Network">
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Products Section -->
-    <section id="products">
-        <div class="container">
-            <h2 class="section-title fade-in">Products</h2>
-            <p class="section-subtitle fade-in">Innovative Solutions for the Future of IoT</p>
-            
-            <div class="products-grid">
-                <div class="product-card fade-in">
-                    <div class="product-content">
-                        <span class="product-type">SaaS Platform</span>
-                        <h3>Digital Object Memory Platform</h3>
-                        <p>A cloud-based platform that implements QR, NFC, and RFID-based digital memory to securely store and manage object ownership, warranty information, and service contact details.</p>
-                        <p>Designed for manufacturers, service providers, and enterprises, the platform transforms physical assets into digitally traceable, service-ready objects.</p>
-                        <div class="product-date">📅 End of January 2026</div>
-                    </div>
-                    <div class="product-image">
-                        <img src="product reveal images/screen1.png" alt="Digital Object Memory Platform">
+            <!-- Products Section -->
+            <section id="products">
+                <div class="container">
+                    <h2 class="section-title fade-in">Products</h2>
+                    <p class="section-subtitle fade-in">Innovative Solutions for the Future of IoT</p>
+                    
+                    <div class="products-grid">
+                        <div class="product-card fade-in">
+                            <div class="product-content">
+                                <span class="product-type">SaaS Platform</span>
+                                <h3>Digital Object Memory Platform</h3>
+                                <p>A cloud-based platform that implements QR, NFC, and RFID-based digital memory to securely store and manage object ownership, warranty information, and service contact details.</p>
+                                <p>Designed for manufacturers, service providers, and enterprises, the platform transforms physical assets into digitally traceable, service-ready objects.</p>
+                                <div class="product-date">📅 End of January 2026</div>
+                            </div>
+                            <div class="product-image">
+                                <img src="product reveal images/screen3.png" alt="Digital Object Memory Platform">
+                            </div>
+                        </div>
+                        
+                        <div class="product-card fade-in">
+                            <div class="product-content">
+                                <span class="product-type">Hardware Platform</span>
+                                <h3>Wall-Integrated Edge Computing Platform</h3>
+                                <p>A hardware-based Wall-Integrated Edge Computing Platform engineered for on-site edge intelligence in Industrial IoT (IIoT) and IoT environments, enabling indoor and outdoor security, tracking, tracing, and automation.</p>
+                                <p>A wall-integrated edge platform designed for retail, warehouses, offices, homes, and small industries, delivering local security and automation control with faster response, enhanced privacy, and minimal cloud reliance.</p>
+                                <div class="product-date">📅 January 2026</div>
+                            </div>
+                            <div class="product-image">
+                                <img src="product reveal images/screen3.png" alt="Wall-Integrated Edge Computing Platform">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="product-card fade-in">
-                    <div class="product-content">
-                        <span class="product-type">Hardware Platform</span>
-                        <h3>Wall-Integrated Edge Computing Platform</h3>
-                        <p>A hardware-based Wall-Integrated Edge Computing Platform engineered for on-site edge intelligence in Industrial IoT (IIoT) and IoT environments, enabling indoor and outdoor security, tracking, tracing, and automation.</p>
-                        <p>A wall-integrated edge platform designed for retail, warehouses, offices, homes, and small industries, delivering local security and automation control with faster response, enhanced privacy, and minimal cloud reliance.</p>
-                        <div class="product-date">📅 Mid 2026</div>
-                    </div>
-                    <div class="product-image">
-                        <img src="product reveal images/screen2.png" alt="Wall-Integrated Edge Computing Platform">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
     <!-- Services Section -->
     <section id="services">
@@ -1848,9 +1806,7 @@
 
                 <div class="team-card">
                     <div class="team-image">
-                        <div class="team-placeholder">
-                            <span>👤</span>
-                        </div>
+                        <img src="team/alosious.jpeg" alt="Alousius Ambrose">
                     </div>
                     <div class="team-info">
                         <h3>Alousius Ambrose</h3>
@@ -1883,27 +1839,27 @@
             </div>
         </div>
     </section>
+        </div>
+
+        <aside class="right-column">
+            <div class="sticky-image">
+                <img src="website background.png" alt="BrumBella Platform Visual">
+            </div>
+        </aside>
+    </div>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="footer-content">
             <div class="footer-column">
                 <h4>Company</h4>
-                <a href="#home">Work With Us</a>
-                <a href="#team">Team</a>
                 <a href="#about">About Us</a>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Products</h4>
                 <a href="#products">Products</a>
-                <a href="#products">Digital Object Memory Platform</a>
-                <a href="#products">Wall-Integrated Edge Computing Platform</a>
+                <a href="#services">Services</a>
             </div>
             
             <div class="footer-column">
-                <h4>Services</h4>
-                <a href="#services">Services</a>
+                <h4>Work With Us</h4>
                 <a href="#services">IIoT Projects</a>
                 <a href="#services">Partnerships</a>
             </div>
@@ -1912,19 +1868,16 @@
                 <h4>Contact</h4>
                 <a href="mailto:brumbellaco@gmail.com">brumbellaco@gmail.com</a>
                 <p>Chennai, India</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/brumbella/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><img src="social media icons/LinkedIn_logo.png" alt="LinkedIn" style="height:20px;width:20px;object-fit:contain;"></a>
+                    <a href="https://x.com/BrumBella_IOT" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X" title="Twitter/X"><img src="social media icons/X-Logo.png" alt="X" style="height:20px;width:20px;object-fit:contain;"></a>
+                    <a href="https://www.youtube.com/@brumbella" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><img src="social media icons/youtube_icon.png" alt="YouTube" style="height:20px;width:20px;object-fit:contain;"></a>
+                </div>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p class="footer-copyright">&copy; 2025 BrumBella IOT pvt. Ltd. All rights reserved.</p>
-            <div class="footer-social">
-                <h5>Reach us</h5>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/company/brumbella/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">in</a>
-                    <a href="https://x.com/BrumBella_IOT" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X" title="Twitter/X">𝕏</a>
-                    <a href="https://www.youtube.com/@brumbella" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">▶</a>
-                </div>
-            </div>
+            <p class="footercopyright">&copy; 2025 BrumBella IOT Pvt. Ltd. All rights reserved.</p>
         </div>
     </footer>
 
