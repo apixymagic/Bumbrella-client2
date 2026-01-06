@@ -31,6 +31,20 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Right-side background image from top to footer */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 40%;
+            background: url("website background.png") center right / cover no-repeat;
+            opacity: 1;
+            z-index: -1;
         }
 
         /* Navigation */
@@ -131,7 +145,7 @@
 
         .animated-bg { display: none; }
 
-        /* Two column layout: left scrolls, right image fixed */
+        /* Layout: left content column, right side visual background */
         .page-grid {
             position: relative;
             padding: 2rem 5%;
@@ -148,30 +162,7 @@
             max-width: 880px;
         }
 
-        .right-column {
-            position: fixed;
-            top: 80px;
-            right: 4%;
-            width: 34%;
-            max-width: 520px;
-        }
-
-        .sticky-image {
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sticky-image img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 18px;
-            box-shadow: var(--shadow-soft);
-            background: #f5f5f5;
-            padding: 14px;
-        }
+        /* (Previously explicit right column image is now provided by body background) */
 
         .hero {
             min-height: auto;
@@ -603,8 +594,10 @@
         .product-image {
             padding: 1rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 0.75rem;
             background: #f6f8fb;
         }
 
@@ -615,6 +608,15 @@
             object-fit: contain;
             border-radius: 12px;
             box-shadow: var(--shadow-soft);
+        }
+
+        .product-date-label {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .product-card:nth-child(even) {
@@ -918,8 +920,15 @@
         .team-info .team-designation {
             font-size: 0.95rem;
             color: var(--text-gray);
+            margin: 0 0 0.35rem 0;
+            font-weight: 600;
+        }
+
+        .team-extra {
+            font-size: 0.9rem;
+            color: var(--text-gray);
             margin: 0 0 0.75rem 0;
-            font-weight: 500;
+            line-height: 1.5;
         }
 
         .team-info .team-linkedin {
@@ -1050,13 +1059,6 @@
         @media (max-width: 1024px) {
             .page-grid { padding: 2rem 4%; }
             .left-column { width: 100%; max-width: none; }
-            .right-column {
-                position: static;
-                width: 100%;
-                max-width: none;
-                margin-top: 2rem;
-            }
-            .sticky-image { height: auto; }
 
             .hero h1 { font-size: 2.3rem; }
             .hero h2 { font-size: 1.1rem; }
@@ -1597,10 +1599,10 @@
                                 <h3>Digital Object Memory Platform</h3>
                                 <p>A cloud-based platform that implements QR, NFC, and RFID-based digital memory to securely store and manage object ownership, warranty information, and service contact details.</p>
                                 <p>Designed for manufacturers, service providers, and enterprises, the platform transforms physical assets into digitally traceable, service-ready objects.</p>
-                                <div class="product-date">📅 End of January 2026</div>
                             </div>
                             <div class="product-image">
-                                <img src="product reveal images/screen3.png" alt="Digital Object Memory Platform">
+                                <div class="product-date-label">End of January 2026</div>
+                                <img src="product reveal images/screen1.png" alt="Digital Object Memory Platform">
                             </div>
                         </div>
                         
@@ -1610,10 +1612,10 @@
                                 <h3>Wall-Integrated Edge Computing Platform</h3>
                                 <p>A hardware-based Wall-Integrated Edge Computing Platform engineered for on-site edge intelligence in Industrial IoT (IIoT) and IoT environments, enabling indoor and outdoor security, tracking, tracing, and automation.</p>
                                 <p>A wall-integrated edge platform designed for retail, warehouses, offices, homes, and small industries, delivering local security and automation control with faster response, enhanced privacy, and minimal cloud reliance.</p>
-                                <div class="product-date">📅 January 2026</div>
                             </div>
                             <div class="product-image">
-                                <img src="product reveal images/screen3.png" alt="Wall-Integrated Edge Computing Platform">
+                                <div class="product-date-label">January 2026</div>
+                                <img src="product reveal images/screen2.png" alt="Wall-Integrated Edge Computing Platform">
                             </div>
                         </div>
                     </div>
@@ -1801,6 +1803,10 @@
                     <div class="team-info">
                         <h3>Ilaya Raja N</h3>
                         <p class="team-designation">Founder</p>
+                        <p class="team-extra">
+                            B.E., M.E., Ph.D. Scholar (Part-Time)<br>
+                            Embedded Engineer, Freelance Data Analyst
+                        </p>
                         <a href="https://www.linkedin.com/in/ilaya-raja-562791164/" target="_blank" rel="noopener noreferrer" class="team-linkedin">LinkedIn</a>
                     </div>
                 </div>
@@ -1812,6 +1818,10 @@
                     <div class="team-info">
                         <h3>Saravanan C</h3>
                         <p class="team-designation">Co-Founder</p>
+                        <p class="team-extra">
+                            Executive Director, AW-Agan Innovative Solution Pvt. Ltd.<br>
+                            20+ years in Industrial Procurement, 3+ years in MSME product strategy
+                        </p>
                         <a href="https://www.linkedin.com/in/saravanan-c-65726a355" target="_blank" rel="noopener noreferrer" class="team-linkedin">LinkedIn</a>
                     </div>
                 </div>
@@ -1823,6 +1833,9 @@
                     <div class="team-info">
                         <h3>Alousius Ambrose</h3>
                         <p class="team-designation">Mentor</p>
+                        <p class="team-extra">
+                            Full Stack Developer – 4 years' experience in cloud and PC app development
+                        </p>
                         <a href="https://www.linkedin.com/in/alousius-ambrose-319052281" target="_blank" rel="noopener noreferrer" class="team-linkedin">LinkedIn</a>
                     </div>
                 </div>
@@ -1834,6 +1847,9 @@
                     <div class="team-info">
                         <h3>Lakshmanan L N</h3>
                         <p class="team-designation">Mentor</p>
+                        <p class="team-extra">
+                            Machine Learning Engineer – 7 years in AI, image recognition, and segmentation
+                        </p>
                         <a href="https://www.linkedin.com/in/lakshmanan-ln" target="_blank" rel="noopener noreferrer" class="team-linkedin">LinkedIn</a>
                     </div>
                 </div>
@@ -1845,6 +1861,9 @@
                     <div class="team-info">
                         <h3>Rishwanth B</h3>
                         <p class="team-designation">Management and Admin</p>
+                        <p class="team-extra">
+                            B.E. ECE (Student) – Embedded product development &amp; system integration
+                        </p>
                         <a href="https://www.linkedin.com/in/rishwanth-b-8b4254285" target="_blank" rel="noopener noreferrer" class="team-linkedin">LinkedIn</a>
                     </div>
                 </div>
@@ -1852,12 +1871,6 @@
         </div>
     </section>
         </div>
-
-        <aside class="right-column">
-            <div class="sticky-image">
-                <img src="website background.png" alt="BrumBella Platform Visual">
-            </div>
-        </aside>
     </div>
 
     <!-- Footer -->
@@ -1889,7 +1902,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p class="footercopyright">&copy; 2025 BrumBella IOT Pvt. Ltd. All rights reserved.</p>
+            <p class="footercopyright">&copy; 2025 BrumBella Pvt. Ltd. All rights reserved.</p>
         </div>
     </footer>
 
