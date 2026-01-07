@@ -38,7 +38,7 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
+            top: 40px;
             right: 0;
             bottom: 0;
             width: 40%;
@@ -52,7 +52,7 @@
             position: relative;
             width: 100%;
             background: var(--bg);
-            padding: 1rem 5%;
+            padding: 1rem 2%;
             border-bottom: 1px solid var(--border-soft);
         }
 
@@ -148,7 +148,7 @@
         /* Layout: left content column, right side visual background */
         .page-grid {
             position: relative;
-            padding: 2rem 5%;
+            padding: 2rem 2%;
             max-width: 1400px;
             margin: 0 auto;
             display: block;
@@ -1057,7 +1057,7 @@
         
         /* Large Tablets and Small Laptops */
         @media (max-width: 1024px) {
-            .page-grid { padding: 2rem 4%; }
+            .page-grid { padding: 2rem 2.5%; }
             .left-column { width: 100%; max-width: none; }
 
             .hero h1 { font-size: 2.3rem; }
@@ -1093,7 +1093,7 @@
         /* Tablets */
         @media (max-width: 768px) {
             nav {
-                padding: 0.8rem 3%;
+                padding: 0.8rem 2%;
             }
 
             .nav-links {
@@ -1288,7 +1288,7 @@
         /* Mobile Phones */
         @media (max-width: 480px) {
             nav {
-                padding: 0.8rem 4%;
+                padding: 0.8rem 2.5%;
             }
 
             .logo {
@@ -1508,6 +1508,13 @@
             }
         }
 
+        /* Hide large right-side decorative image on small screens to avoid overflow/cropping */
+        @media (max-width: 768px) {
+            body::before {
+                display: none;
+            }
+        }
+
         /* Extra Small Phones */
         @media (max-width: 360px) {
             .hero h1 {
@@ -1613,10 +1620,10 @@
                                 <p>A hardware-based Wall-Integrated Edge Computing Platform engineered for on-site edge intelligence in Industrial IoT (IIoT) and IoT environments, enabling indoor and outdoor security, tracking, tracing, and automation.</p>
                                 <p>A wall-integrated edge platform designed for retail, warehouses, offices, homes, and small industries, delivering local security and automation control with faster response, enhanced privacy, and minimal cloud reliance.</p>
                             </div>
-                            <div class="product-image">
-                                <div class="product-date-label">January 2026</div>
-                                <img src="product reveal images/screen2.png" alt="Wall-Integrated Edge Computing Platform">
-                            </div>
+                                <div class="product-image">
+                                    <div class="product-date-label">Mid 2026</div>
+                                    <img src="product reveal images/screen2.png" alt="Wall-Integrated Edge Computing Platform">
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -1902,7 +1909,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p class="footercopyright">&copy; 2025 BrumBella Pvt. Ltd. All rights reserved.</p>
+            <p class="footercopyright">&copy; 2025 BrumBella. All rights reserved.</p>
         </div>
     </footer>
 
